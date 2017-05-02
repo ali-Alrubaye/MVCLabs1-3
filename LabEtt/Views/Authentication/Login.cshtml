@@ -1,0 +1,11 @@
+﻿
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.TextBox("username")
+
+    @Html.Password("password")
+
+    <input type="submit" />
+}

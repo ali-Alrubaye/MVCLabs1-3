@@ -1,0 +1,37 @@
+﻿@model Datalager.Models.Album
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+<div>
+    <hr/>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AlbumName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AlbumName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AlbumDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AlbumDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AlbumComment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AlbumComment)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

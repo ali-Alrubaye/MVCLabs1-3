@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Datalager.Models.Album>
+@{
+    ViewBag.Title = "Index";
+}
+<h2>Index</h2>
+@{
+    var albumList = new AjaxOptions
+    {
+        HttpMethod = "GET",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "showAlbum"
+    };
+    var ajaxOption = new AjaxOptions
+    {
+        HttpMethod = "POST",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "gallery"
+    };
+}
+<div class="row">
+    @foreach (var album in Model)
+    {
+        <div class="col-lg-4 col-md-6 col-xs-12">
+            <div>
+                @Html.DisplayFor(modelItem => album.AlbumName)
+            </div>
+            <div>
+                @Ajax.ActionLink("Create Album", "Create", new { id = album.AlbumId }, albumList) |
+                @Ajax.ActionLink("Details", "Details", new { id = album.AlbumId }, albumList) |
+                @Ajax.ActionLink("Add Comment", "Edit", new { id = album.AlbumId }, albumList) |
+                @Ajax.ActionLink("Delete", "Delete", new { id = album.AlbumId }, ajaxOption) |
+                @Ajax.ActionLink("Add Photo to Album", "AddPhotoToAlbum", new { id = album.AlbumId }, albumList)
+            </div>
+          
+        </div>
+    }
+
+</div>

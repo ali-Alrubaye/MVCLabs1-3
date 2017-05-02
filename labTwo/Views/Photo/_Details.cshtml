@@ -1,0 +1,41 @@
+﻿@model Datalager.Models.Photo
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+<div>
+    <hr/>
+    <div>
+        <img src="@Url.Content("~/GalleryFolder/" + Model.PhotoPath)" alt="Kan int hita bilden" width="150" height="150">
+    </div>
+    <dl class="dl-horizontal">
+       
+        <dt>
+            @Html.DisplayNameFor(model => model.PhotoName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhotoName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhotoDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhotoDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhotoComment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhotoComment)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

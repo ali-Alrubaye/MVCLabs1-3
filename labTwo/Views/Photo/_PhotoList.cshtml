@@ -1,0 +1,63 @@
+﻿
+
+@model IList<Datalager.Models.Photo>
+
+@{
+//ViewBag.Title = $"Vi har {Model.Count} bilder i vår lista";
+}
+
+@{
+    var ajaxAllPhoto = new AjaxOptions
+    {
+        HttpMethod = "GET",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "showPhoto"
+    };
+    var ajaxOption = new AjaxOptions
+    {
+        HttpMethod = "POST",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "gallery"
+    };
+}
+@*@Ajax.ActionLink("Upload", "Upload",  ajaxAllPhoto)*@
+<div class="row">
+    @Ajax.ActionLink("Upload", "Upload",ajaxAllPhoto)
+    <div class="">
+
+        @foreach (var item in Model)
+        {
+            <div class="clearfix visible-lg"></div>
+            <div class="col-lg-4 col-sm-6">
+                <div class="photo">
+                    <div class="thumbnail">
+                        <h4>Photo Name: @item.PhotoName</h4>
+
+                        <img src="@Url.Content("~/GalleryFolder/" + @item.PhotoPath)" alt="Kan int hita bilden" width="250" height="250">
+                        <div>Photo Comment: @item.PhotoComment</div>
+                        <div>
+                            @Ajax.ActionLink("Add Comment", "Edit", new { id = item.PhotoId }, ajaxAllPhoto) |
+                            @Ajax.ActionLink("Details", "Details", new { id = item.PhotoId }, ajaxAllPhoto) |
+                            @Ajax.ActionLink("Delete", "Delete", new { id = item.PhotoId }, ajaxOption)
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        }
+    </div>
+
+</div>
+@section latest{
+    <h3>Latest uploaded Picture</h3>
+    @foreach (var result in Model)
+    {
+        if (Model.IndexOf(result) == Model.Count - 1)
+        {
+            // this is the last item
+            <img src="@Url.Content("~/GalleryFolder/" + @result.PhotoPath)" alt="Kan int hita bilden" width="300" height="300">
+        }
+    }
+}
+
